@@ -7,13 +7,16 @@ const dbUser = 'msa';
 //     host: 'localhost',
 //     dialect: 'postgres'
 // })
-
-
 // below for render 
-
-const sequelize = new Sequelize('practice_6ye2', 'iXQ2zrMNYklERfQyDqGCFopxuahl8cRg', 'msa', {
+const sequelize = new Sequelize('practice_6ye2','msa', 'iXQ2zrMNYklERfQyDqGCFopxuahl8cRg', {
     host: 'dpg-cgat2et269v4icvsnc20-a.oregon-postgres.render.com',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    post:5432,
+    dialectOptions: {
+        ssl: {
+          require: 'true'
+        }
+      }
 })
 
 // postgres://msa:iXQ2zrMNYklERfQyDqGCFopxuahl8cRg@dpg-cgat2et269v4icvsnc20-a.oregon-postgres.render.com/practice_6ye2
