@@ -6,8 +6,14 @@ const db = require('./db.config');
 app.use(express.json());
 
 // table creation if not exits
-db.sequelize.sync();
+db.sequelize.sync()
+.then(data=>{
+    console.log("success");
 
+})
+.catch(err=>{
+    console.log(err);
+})
 const controller = require('./customer.controller.js');
 
 

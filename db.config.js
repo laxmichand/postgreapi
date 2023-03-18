@@ -3,10 +3,22 @@ const dbName = 'practice';
 const dbPass = 'camp';
 const dbUser = 'msa';
 
-const sequelize = new Sequelize(dbName, dbPass, dbUser, {
-    host: 'localhost',
+// const sequelize = new Sequelize(dbName, dbPass, dbUser, {
+//     host: 'localhost',
+//     dialect: 'postgres'
+// })
+
+
+// below for render 
+
+const sequelize = new Sequelize('practice_6ye2', 'iXQ2zrMNYklERfQyDqGCFopxuahl8cRg', 'msa', {
+    host: 'dpg-cgat2et269v4icvsnc20-a.oregon-postgres.render.com',
     dialect: 'postgres'
 })
+
+// postgres://msa:iXQ2zrMNYklERfQyDqGCFopxuahl8cRg@dpg-cgat2et269v4icvsnc20-a.oregon-postgres.render.com/practice_6ye2
+   //postgres://msa:iXQ2zrMNYklERfQyDqGCFopxuahl8cRg@dpg-cgat2et269v4icvsnc20-a.oregon-postgres.render.com/practice_6ye2
+
 const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
