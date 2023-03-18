@@ -1,4 +1,3 @@
-const { sequelize, Sequelize } = require('./db.config');
 module.exports = (sequelize, Sequelize) => {
     const customer = sequelize.define('customer', {
         name: {
