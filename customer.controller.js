@@ -1,32 +1,42 @@
+const { application } = require('express');
+const { json } = require('sequelize');
+const { Orders } = require('./db.config');
 const db = require('./db.config');
 const Customer = db.Customers;
 
-console.log("db is", db.Customers);
-
 function createCustomer(req, res) {
-    if (!req.body.email || !req.body.name) {
+    if (!req.body.customer.email || !req.body.customer.name) {
         res.sendStatus(400)
             .send({
                 message: 'Bad Data'
             })
     };
-    const customerData = req.body;
+    const customerData = req.body.customer;
     Customer.create(customerData)
         .then(customer => {
-            res.send(customer).sendStatus(200);
+            const order = req.body.order;
+            order.customerEmail = customer.email;
+            Orders.create(order)
+                .then(order => {
+                    res.send({ data: { ...customer, ...order } }).sendStatus(200);
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: err
+                    })
+                })
         })
         .catch(err => {
             res.status(500).send({
                 message: err
             })
         })
-
 };
 
 function findAllCustomers(res) {
-    Customer.findAll()
+    Customer.findAll({ include: Orders })
         .then(data => {
-            res.send(data);
+            res.status(200).json(data);
         }).catch(err => {
             res.sendStatus(400).send({
                 message: err
@@ -35,7 +45,7 @@ function findAllCustomers(res) {
 };
 
 function findByEmailCustomer(req, res) {
-    Customer.findByPk(req.params.email)
+    Customer.findByPk(req.params.email, { include: Orders })
         .then(data => {
             res.send(data);
         })
@@ -59,11 +69,10 @@ function deleteCustomers(req, res) {
         .then(data => {
             res.send(data);
         })
-        .catch(err=>{
-            res.sendStatus(400).send({message:err})
+        .catch(err => {
+            res.sendStatus(400).send({ message: err })
         })
 }
-
 
 module.exports = {
     createCustomer,

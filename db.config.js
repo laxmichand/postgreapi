@@ -21,6 +21,7 @@ const dbUser = 'msa';
 // })
 
 // below for neon 
+
 const sequelize = new Sequelize('practice','laxmichand', 'ScWgHT0vifa2', {
     host: 'ep-blue-salad-568103.us-east-2.aws.neon.tech',
     dialect: 'postgres',
@@ -43,5 +44,11 @@ db.Sequelize = Sequelize;
 
 //customer model call table creation  
 db.Customers = require('./customer.model')(sequelize,Sequelize);
+db.Orders = require('./order.model')(sequelize,Sequelize);
+
+db.Customers.hasOne(db.Orders, {
+    foreignKey: "customerEmail"
+});
+db.Orders.belongsTo(db.Customers);
 
 module.exports = db;
