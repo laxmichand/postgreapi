@@ -18,7 +18,7 @@ function createCustomer(req, res) {
             order.customerEmail = customer.email;
             Orders.create(order)
                 .then(order => {
-                    res.send({ data: { ...customer, ...order } }).sendStatus(200);
+                    res.sendStatus(200).send({ data: { ...customer, ...order } });
                 })
                 .catch(err => {
                     res.status(500).send({
