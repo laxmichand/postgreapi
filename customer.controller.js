@@ -36,9 +36,10 @@ function createCustomer(req, res) {
 function findAllCustomers(res) {
     Customer.findAll({ include: Orders })
         .then(data => {
-            res.status(200).json(data);
+            console.log("ewfewfew ");
+            res.status(200).send(data);
         }).catch(err => {
-            res.sendStatus(400).send({
+            res.status(400).send({
                 message: err
             })
         })

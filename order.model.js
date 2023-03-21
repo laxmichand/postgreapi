@@ -2,11 +2,12 @@ module.exports = (sequelize, Sequelize) => {
     const order = sequelize.define('order', {
         product: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
+            primaryKey:true
         },
         description: {
-            type: Sequelize.STRING,
-            allowNull: false,
+            type: Sequelize.STRING,            
+            allowNull: false
         },
         active:{
             type: Sequelize.BOOLEAN,
