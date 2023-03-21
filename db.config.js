@@ -3,10 +3,10 @@ const dbName = 'practice';
 const dbPass = 'camp';
 const dbUser = 'msa';
 
-const sequelize = new Sequelize(dbName, dbPass, dbUser, {
-    host: 'localhost',
-    dialect: 'postgres'
-})
+// const sequelize = new Sequelize(dbName, dbPass, dbUser, {
+//     host: 'localhost',
+//     dialect: 'postgres'
+// })
 
 // below for render 
 // const sequelize = new Sequelize('practice_6ye2','msa', 'iXQ2zrMNYklERfQyDqGCFopxuahl8cRg', {
@@ -22,16 +22,16 @@ const sequelize = new Sequelize(dbName, dbPass, dbUser, {
 
 // below for neon 
 
-// const sequelize = new Sequelize('practice','laxmichand', 'ScWgHT0vifa2', {
-//     host: 'ep-blue-salad-568103.us-east-2.aws.neon.tech',
-//     dialect: 'postgres',
-//     post:5432,
-//     dialectOptions: {
-//         ssl: {
-//           require: 'true'
-//         }
-//       }
-// })
+const sequelize = new Sequelize('practice','laxmichand', 'ScWgHT0vifa2', {
+    host: 'ep-blue-salad-568103.us-east-2.aws.neon.tech',
+    dialect: 'postgres',
+    post:5432,
+    dialectOptions: {
+        ssl: {
+          require: 'true'
+        }
+      }
+})
 
 // postgres://msa:iXQ2zrMNYklERfQyDqGCFopxuahl8cRg@dpg-cgat2et269v4icvsnc20-a.oregon-postgres.render.com/practice_6ye2
 //postgres://msa:iXQ2zrMNYklERfQyDqGCFopxuahl8cRg@dpg-cgat2et269v4icvsnc20-a.oregon-postgres.render.com/practice_6ye2
