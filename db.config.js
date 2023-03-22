@@ -4,8 +4,15 @@ const dbPass = 'camp';
 const dbUser = 'msa';
 
 // const sequelize = new Sequelize(dbName, dbPass, dbUser, {
-//     host: 'localhost',
-//     dialect: 'postgres'
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   logging: false,
+//   pool: {
+//     min: 0,
+//     max: 5,
+//     acquire: 30000,
+//     idle: 10000
+//   }
 // })
 
 // below for render 
@@ -46,7 +53,7 @@ db.Sequelize = Sequelize;
 db.Customers = require('./customer.model')(sequelize,Sequelize);
 db.Orders = require('./order.model')(sequelize,Sequelize);
 
-db.Customers.hasOne(db.Orders, {
+db.Customers.hasMany(db.Orders, {
     foreignKey: "customerEmail"
 });
 db.Orders.belongsTo(db.Customers);

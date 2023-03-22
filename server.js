@@ -24,6 +24,7 @@ db.sequelize.sync()
     console.log(err);
 })
 const controller = require('./customer.controller.js');
+const orderController = require('./orders.controller');
 
 
 app.get('/',(req,res)=>{
@@ -53,6 +54,11 @@ app.put('/customers/update',(req,res)=>{
 // for delete customer or status invalid status
 app.delete('/customers/delete/:email',(req,res)=>{
     controller.deleteCustomers(req,res);;
+})
+
+// create orders
+app.post('/customers/orders/new',(req,res)=>{
+    orderController.createOrder(req,res);
 })
 
 app.listen(4000,()=>{
