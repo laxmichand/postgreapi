@@ -61,6 +61,17 @@ app.post('/customers/orders/new',(req,res)=>{
     orderController.createOrder(req,res);
 })
 
+// get all Orders
+app.get('/orders',(req,res)=>{
+    console.log("inside get all")
+    orderController.findAllOrders(req,res);
+});
+
+//get order by product name
+app.get('/orders/:product',(req,res)=>{
+    orderController.findByEmailOrders(req,res);
+});
+
 app.listen(4000,()=>{
     console.log("server is running at 4000")
 })
